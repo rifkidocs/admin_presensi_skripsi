@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "kepala_sekolahs",
+  "info": {
+    "singularName": "kepala-sekolah",
+    "pluralName": "kepala-sekolahs",
+    "displayName": "Kepala Sekolah",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "no_telpon": {
+      "type": "string"
+    }
+  }
+}

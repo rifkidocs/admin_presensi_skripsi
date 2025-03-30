@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kelas_sekolahs",
+  "info": {
+    "singularName": "kelas-sekolah",
+    "pluralName": "kelas-sekolahs",
+    "displayName": "Kelas Sekolah",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "wali_kelas": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::guru-pegawai.guru-pegawai"
+    },
+    "nama_kelas": {
+      "type": "string"
+    },
+    "siswas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::siswa.siswa",
+      "mappedBy": "kelas_sekolah"
+    }
+  }
+}

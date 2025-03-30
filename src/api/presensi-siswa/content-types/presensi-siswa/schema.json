@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "presensi_siswas",
+  "info": {
+    "singularName": "presensi-siswa",
+    "pluralName": "presensi-siswas",
+    "displayName": "Presensi Siswa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "siswa": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::siswa.siswa",
+      "inversedBy": "presensi_siswas"
+    },
+    "waktu_absen": {
+      "type": "datetime"
+    },
+    "jenis_absen": {
+      "type": "enumeration",
+      "enum": [
+        "masuk",
+        "pulang"
+      ]
+    },
+    "foto_absen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "koordinat_absen": {
+      "type": "string"
+    },
+    "is_validated": {
+      "type": "boolean"
+    }
+  }
+}

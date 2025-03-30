@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "siswas",
+  "info": {
+    "singularName": "siswa",
+    "pluralName": "siswas",
+    "displayName": "Siswa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "kelas_sekolah": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::kelas-sekolah.kelas-sekolah",
+      "inversedBy": "siswas"
+    },
+    "nomor_induk_siswa": {
+      "type": "string",
+      "unique": true
+    },
+    "username": {
+      "type": "string",
+      "unique": true
+    },
+    "password": {
+      "type": "password"
+    },
+    "nama": {
+      "type": "string"
+    },
+    "foto_wajah": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "presensi_siswas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::presensi-siswa.presensi-siswa",
+      "mappedBy": "siswa"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jadwal_presensis",
+  "info": {
+    "singularName": "jadwal-presensi",
+    "pluralName": "jadwal-presensis",
+    "displayName": "Jadwal Presensi",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "jenis_presensi": {
+      "type": "enumeration",
+      "enum": [
+        "guru",
+        "pegawai",
+        "siswa"
+      ]
+    },
+    "jam_masuk": {
+      "type": "datetime"
+    },
+    "jam_pulang": {
+      "type": "datetime"
+    }
+  }
+}

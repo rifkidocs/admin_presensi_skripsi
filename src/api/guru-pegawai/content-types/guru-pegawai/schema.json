@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guru_pegawais",
+  "info": {
+    "singularName": "guru-pegawai",
+    "pluralName": "guru-pegawais",
+    "displayName": "Guru/Pegawai",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "nomor_induk_guru": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": false
+    },
+    "foto_wajah": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "is_wali_kelas": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "presensi_gurus": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::presensi-guru.presensi-guru",
+      "mappedBy": "guru_pegawai"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "presensi_gurus",
+  "info": {
+    "singularName": "presensi-guru",
+    "pluralName": "presensi-gurus",
+    "displayName": "Presensi Guru",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "guru_pegawai": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guru-pegawai.guru-pegawai",
+      "inversedBy": "presensi_gurus"
+    },
+    "waktu_absen": {
+      "type": "datetime"
+    },
+    "jenis_absen": {
+      "type": "enumeration",
+      "enum": [
+        "masuk",
+        "pulang"
+      ]
+    },
+    "foto_absen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "koordinat_absen": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "lokasi_presensis",
+  "info": {
+    "singularName": "lokasi-presensi",
+    "pluralName": "lokasi-presensis",
+    "displayName": "Lokasi Presensi"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nama_lokasi": {
+      "type": "string"
+    },
+    "alamat": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    },
+    "radius_meter": {
+      "type": "integer"
+    }
+  }
+}
