@@ -30,16 +30,16 @@
         "images"
       ]
     },
-    "is_wali_kelas": {
-      "type": "boolean",
-      "default": false,
-      "required": false
-    },
     "presensi_gurus": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::presensi-guru.presensi-guru",
       "mappedBy": "guru_pegawai"
+    },
+    "is_guru": {
+      "type": "boolean",
+      "default": true,
+      "required": false
     }
   }
 }

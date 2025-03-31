@@ -386,7 +386,7 @@ export interface ApiGuruPegawaiGuruPegawai extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
     foto_wajah: Schema.Attribute.Media<'files' | 'images', true>;
-    is_wali_kelas: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    is_guru: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -632,7 +632,7 @@ export interface ApiSiswaSiswa extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::siswa.siswa'> &
       Schema.Attribute.Private;
     nama: Schema.Attribute.String;
-    nomor_induk_siswa: Schema.Attribute.String & Schema.Attribute.Unique;
+    nomor_induk_siswa: Schema.Attribute.String;
     password: Schema.Attribute.Password;
     presensi_siswas: Schema.Attribute.Relation<
       'oneToMany',
@@ -642,7 +642,6 @@ export interface ApiSiswaSiswa extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    username: Schema.Attribute.String & Schema.Attribute.Unique;
   };
 }
 
