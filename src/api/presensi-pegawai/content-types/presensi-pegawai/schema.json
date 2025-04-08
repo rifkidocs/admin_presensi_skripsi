@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "presensi_gurus",
+  "collectionName": "presensi_pegawais",
   "info": {
-    "singularName": "presensi-guru",
-    "pluralName": "presensi-gurus",
-    "displayName": "Presensi Guru",
+    "singularName": "presensi-pegawai",
+    "pluralName": "presensi-pegawais",
+    "displayName": "Presensi Pegawai",
     "description": ""
   },
   "options": {
@@ -22,13 +22,11 @@
       ]
     },
     "foto_absen": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
-        "files",
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     },
     "koordinat_absen": {
       "type": "string"
@@ -37,11 +35,11 @@
       "type": "boolean",
       "default": true
     },
-    "guru": {
+    "pegawai": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::guru.guru",
-      "inversedBy": "presensi_gurus"
+      "target": "api::pegawai.pegawai",
+      "inversedBy": "presensi_pegawais"
     }
   }
 }

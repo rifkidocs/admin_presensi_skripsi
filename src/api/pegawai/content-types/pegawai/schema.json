@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pegawais",
+  "info": {
+    "singularName": "pegawai",
+    "pluralName": "pegawais",
+    "displayName": "Pegawai"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "foto_wajah": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "presensi_pegawais": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::presensi-pegawai.presensi-pegawai",
+      "mappedBy": "pegawai"
+    }
+  }
+}

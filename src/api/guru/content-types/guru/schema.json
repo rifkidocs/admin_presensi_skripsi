@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gurus",
+  "info": {
+    "singularName": "guru",
+    "pluralName": "gurus",
+    "displayName": "Guru"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nama": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "foto_wajah": {
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "presensi_gurus": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::presensi-guru.presensi-guru",
+      "mappedBy": "guru"
+    }
+  }
+}

@@ -369,13 +369,12 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiGuruPegawaiGuruPegawai extends Struct.CollectionTypeSchema {
-  collectionName: 'guru_pegawais';
+export interface ApiGuruGuru extends Struct.CollectionTypeSchema {
+  collectionName: 'gurus';
   info: {
-    description: '';
-    displayName: 'Guru/Pegawai';
-    pluralName: 'guru-pegawais';
-    singularName: 'guru-pegawai';
+    displayName: 'Guru';
+    pluralName: 'gurus';
+    singularName: 'guru';
   };
   options: {
     draftAndPublish: false;
@@ -386,15 +385,10 @@ export interface ApiGuruPegawaiGuruPegawai extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
     foto_wajah: Schema.Attribute.Media<'files' | 'images', true>;
-    is_guru: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::guru-pegawai.guru-pegawai'
-    > &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::guru.guru'> &
       Schema.Attribute.Private;
     nama: Schema.Attribute.String;
-    nomor_induk_guru: Schema.Attribute.String;
     presensi_gurus: Schema.Attribute.Relation<
       'oneToMany',
       'api::presensi-guru.presensi-guru'
@@ -419,11 +413,13 @@ export interface ApiJadwalPresensiJadwalPresensi
     draftAndPublish: false;
   };
   attributes: {
+    batas_jam_masuk: Schema.Attribute.Time;
+    batas_jam_pulang: Schema.Attribute.Time;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    jam_masuk: Schema.Attribute.DateTime;
-    jam_pulang: Schema.Attribute.DateTime;
+    jam_masuk: Schema.Attribute.Time;
+    jam_pulang: Schema.Attribute.Time;
     jenis_presensi: Schema.Attribute.Enumeration<['guru', 'pegawai', 'siswa']>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -466,10 +462,6 @@ export interface ApiKelasSekolahKelasSekolah
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    wali_kelas: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::guru-pegawai.guru-pegawai'
-    >;
   };
 }
 
@@ -535,6 +527,40 @@ export interface ApiLokasiPresensiLokasiPresensi
   };
 }
 
+export interface ApiPegawaiPegawai extends Struct.CollectionTypeSchema {
+  collectionName: 'pegawais';
+  info: {
+    displayName: 'Pegawai';
+    pluralName: 'pegawais';
+    singularName: 'pegawai';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    foto_wajah: Schema.Attribute.Media<'images', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pegawai.pegawai'
+    > &
+      Schema.Attribute.Private;
+    nama: Schema.Attribute.String;
+    presensi_pegawais: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::presensi-pegawai.presensi-pegawai'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPresensiGuruPresensiGuru
   extends Struct.CollectionTypeSchema {
   collectionName: 'presensi_gurus';
@@ -552,10 +578,8 @@ export interface ApiPresensiGuruPresensiGuru
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     foto_absen: Schema.Attribute.Media<'files' | 'images'>;
-    guru_pegawai: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::guru-pegawai.guru-pegawai'
-    >;
+    guru: Schema.Attribute.Relation<'manyToOne', 'api::guru.guru'>;
+    is_validated: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     jenis_absen: Schema.Attribute.Enumeration<['masuk', 'pulang']>;
     koordinat_absen: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -564,6 +588,41 @@ export interface ApiPresensiGuruPresensiGuru
       'api::presensi-guru.presensi-guru'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    waktu_absen: Schema.Attribute.DateTime;
+  };
+}
+
+export interface ApiPresensiPegawaiPresensiPegawai
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'presensi_pegawais';
+  info: {
+    description: '';
+    displayName: 'Presensi Pegawai';
+    pluralName: 'presensi-pegawais';
+    singularName: 'presensi-pegawai';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    foto_absen: Schema.Attribute.Media<'images', true>;
+    is_validated: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    jenis_absen: Schema.Attribute.Enumeration<['masuk', 'pulang']>;
+    koordinat_absen: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::presensi-pegawai.presensi-pegawai'
+    > &
+      Schema.Attribute.Private;
+    pegawai: Schema.Attribute.Relation<'manyToOne', 'api::pegawai.pegawai'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1153,12 +1212,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::guru-pegawai.guru-pegawai': ApiGuruPegawaiGuruPegawai;
+      'api::guru.guru': ApiGuruGuru;
       'api::jadwal-presensi.jadwal-presensi': ApiJadwalPresensiJadwalPresensi;
       'api::kelas-sekolah.kelas-sekolah': ApiKelasSekolahKelasSekolah;
       'api::kepala-sekolah.kepala-sekolah': ApiKepalaSekolahKepalaSekolah;
       'api::lokasi-presensi.lokasi-presensi': ApiLokasiPresensiLokasiPresensi;
+      'api::pegawai.pegawai': ApiPegawaiPegawai;
       'api::presensi-guru.presensi-guru': ApiPresensiGuruPresensiGuru;
+      'api::presensi-pegawai.presensi-pegawai': ApiPresensiPegawaiPresensiPegawai;
       'api::presensi-siswa.presensi-siswa': ApiPresensiSiswaPresensiSiswa;
       'api::siswa.siswa': ApiSiswaSiswa;
       'plugin::content-releases.release': PluginContentReleasesRelease;

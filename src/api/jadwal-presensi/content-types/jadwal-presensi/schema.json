@@ -20,10 +20,16 @@
       ]
     },
     "jam_masuk": {
-      "type": "datetime"
+      "type": "time"
+    },
+    "batas_jam_masuk": {
+      "type": "time"
     },
     "jam_pulang": {
-      "type": "datetime"
+      "type": "time"
+    },
+    "batas_jam_pulang": {
+      "type": "time"
     }
   }
 }
