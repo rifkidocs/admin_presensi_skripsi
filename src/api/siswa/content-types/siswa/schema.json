@@ -40,9 +40,6 @@
       "target": "api::presensi-siswa.presensi-siswa",
       "mappedBy": "siswa"
     },
-    "password": {
-      "type": "password"
-    },
     "nomor_induk_siswa": {
       "type": "string",
       "required": false

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "guru",
     "pluralName": "gurus",
-    "displayName": "Guru"
+    "displayName": "Guru",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -17,18 +18,24 @@
       "type": "email"
     },
     "foto_wajah": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "files",
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "presensi_gurus": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::presensi-guru.presensi-guru",
       "mappedBy": "guru"
+    },
+    "wali_kelas": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::kelas-sekolah.kelas-sekolah"
     }
   }
 }

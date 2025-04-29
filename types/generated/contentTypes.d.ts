@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiGuruGuru extends Struct.CollectionTypeSchema {
   collectionName: 'gurus';
   info: {
+    description: '';
     displayName: 'Guru';
     pluralName: 'gurus';
     singularName: 'guru';
@@ -397,6 +398,10 @@ export interface ApiGuruGuru extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    wali_kelas: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::kelas-sekolah.kelas-sekolah'
+    >;
   };
 }
 
@@ -692,7 +697,6 @@ export interface ApiSiswaSiswa extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nama: Schema.Attribute.String;
     nomor_induk_siswa: Schema.Attribute.String;
-    password: Schema.Attribute.Password;
     presensi_siswas: Schema.Attribute.Relation<
       'oneToMany',
       'api::presensi-siswa.presensi-siswa'
