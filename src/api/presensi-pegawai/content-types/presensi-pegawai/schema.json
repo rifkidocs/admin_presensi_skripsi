@@ -18,15 +18,17 @@
       "type": "enumeration",
       "enum": [
         "masuk",
+        "telat",
         "pulang"
       ]
     },
     "foto_absen": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "koordinat_absen": {
       "type": "string"

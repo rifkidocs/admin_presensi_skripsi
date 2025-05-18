@@ -24,6 +24,7 @@
       "type": "enumeration",
       "enum": [
         "masuk",
+        "telat",
         "pulang"
       ]
     },

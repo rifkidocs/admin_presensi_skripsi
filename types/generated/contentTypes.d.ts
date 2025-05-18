@@ -619,7 +619,7 @@ export interface ApiPresensiPegawaiPresensiPegawai
       Schema.Attribute.Private;
     foto_absen: Schema.Attribute.Media<'images', true>;
     is_validated: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    jenis_absen: Schema.Attribute.Enumeration<['masuk', 'pulang']>;
+    jenis_absen: Schema.Attribute.Enumeration<['masuk', 'telat', 'pulang']>;
     koordinat_absen: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -654,7 +654,7 @@ export interface ApiPresensiSiswaPresensiSiswa
       Schema.Attribute.Private;
     foto_absen: Schema.Attribute.Media<'files' | 'images'>;
     is_validated: Schema.Attribute.Boolean;
-    jenis_absen: Schema.Attribute.Enumeration<['masuk', 'pulang']>;
+    jenis_absen: Schema.Attribute.Enumeration<['masuk', 'telat', 'pulang']>;
     koordinat_absen: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
