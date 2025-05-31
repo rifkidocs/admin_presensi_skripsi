@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ratings",
+  "info": {
+    "singularName": "rating",
+    "pluralName": "ratings",
+    "displayName": "Rating"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "pengguna": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "siswa",
+        "guru",
+        "pegawai"
+      ]
+    },
+    "rating": {
+      "type": "integer"
+    }
+  }
+}

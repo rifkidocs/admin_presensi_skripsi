@@ -653,8 +653,10 @@ export interface ApiPresensiSiswaPresensiSiswa
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     foto_absen: Schema.Attribute.Media<'files' | 'images'>;
-    is_validated: Schema.Attribute.Boolean;
-    jenis_absen: Schema.Attribute.Enumeration<['masuk', 'telat', 'pulang']>;
+    is_validated: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    jenis_absen: Schema.Attribute.Enumeration<
+      ['masuk', 'telat', 'pulang', 'izin', 'sakit']
+    >;
     koordinat_absen: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -668,6 +670,36 @@ export interface ApiPresensiSiswaPresensiSiswa
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     waktu_absen: Schema.Attribute.DateTime;
+  };
+}
+
+export interface ApiRatingRating extends Struct.CollectionTypeSchema {
+  collectionName: 'ratings';
+  info: {
+    displayName: 'Rating';
+    pluralName: 'ratings';
+    singularName: 'rating';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::rating.rating'
+    > &
+      Schema.Attribute.Private;
+    pengguna: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Integer;
+    role: Schema.Attribute.Enumeration<['siswa', 'guru', 'pegawai']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1225,6 +1257,7 @@ declare module '@strapi/strapi' {
       'api::presensi-guru.presensi-guru': ApiPresensiGuruPresensiGuru;
       'api::presensi-pegawai.presensi-pegawai': ApiPresensiPegawaiPresensiPegawai;
       'api::presensi-siswa.presensi-siswa': ApiPresensiSiswaPresensiSiswa;
+      'api::rating.rating': ApiRatingRating;
       'api::siswa.siswa': ApiSiswaSiswa;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

@@ -25,7 +25,9 @@
       "enum": [
         "masuk",
         "telat",
-        "pulang"
+        "pulang",
+        "izin",
+        "sakit"
       ]
     },
     "foto_absen": {
@@ -41,7 +43,8 @@
       "type": "string"
     },
     "is_validated": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     }
   }
 }
